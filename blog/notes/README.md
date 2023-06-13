@@ -1,1 +1,0 @@
-<NoteList :list="$site.pages"/>
