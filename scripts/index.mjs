@@ -1,12 +1,11 @@
 import { extname, join } from "node:path";
 import { readdir, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
+import { DOMAIN, MD_EXTNAME, README_FILE } from "./constants.mjs";
 
 const __dirname = join(fileURLToPath(import.meta.url), "..");
 
 let blogFiles = [];
-
-const MD_EXTNAME = ".md";
 
 const resolve = (dir) => join(__dirname, "..", dir);
 
@@ -36,16 +35,16 @@ function convertBlogFilesMap(files) {
 function blogToReadme(files) {
   return convertBlogFilesMap(files)
     .map(({ date, blogName }) => {
-        const link = encodeURI(blogName.split(" ").join("-").toLowerCase());
+      const link = encodeURI(blogName.split(" ").join("-").toLowerCase());
 
-        return `- [${blogName}](https://www.qinghuani.fun/${date}/${link}/) — ${date}\n`;
+      return `- [${blogName}](${DOMAIN}${date}/${link}/) — ${date}\n`;
     })
     .join("");
 }
 
 async function writeBlogToReadme(files) {
   try {
-    await writeFile(resolve("README.md"), blogToReadme(files));
+    await writeFile(resolve(README_FILE), blogToReadme(files));
   } catch (e) {
     console.error("failed to write blogs to readme.md", e);
   }
