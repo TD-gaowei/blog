@@ -36,7 +36,9 @@ function convertBlogFilesMap(files) {
 function blogToReadme(files) {
   return convertBlogFilesMap(files)
     .map(({ date, blogName }) => {
-      return `- [${blogName}](https://www.qinghuani.fun/${date}/${encodeURI(blogName)}) — ${date}\n`;
+        const link = encodeURI(blogName.split(" ").join("-").toLowerCase());
+
+        return `- [${blogName}](https://www.qinghuani.fun/${date}/${link}/) — ${date}\n`;
     })
     .join("");
 }
