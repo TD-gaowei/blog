@@ -42,9 +42,8 @@ function blogToReadme(files) {
 }
 
 async function writeBlogToReadme(files) {
-  // console.log(blogToReadme(blogFiles));
   try {
-    await writeFile(resolve("readme.md"), blogToReadme(files));
+    await writeFile(resolve("README.md"), blogToReadme(files));
   } catch (e) {
     console.error("failed to write blogs to readme.md", e);
   }
