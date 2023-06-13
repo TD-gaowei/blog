@@ -79,25 +79,65 @@ export default function List(): React.ReactElement {
 
 ## 解决方案
 
-```jsx
-// List.jsx
+```tsx
+// List.tsx
 
 import { useRef } from "react";
+import type { ReactElement } from "react";
+import throttle from "lodash.throttle";
 
-const nums = [1, 2, 3];
+const num1 = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const num2 = [9, 2, 3, 4, 5, 6, 7, 8, 1];
 
-const List = () => {
-  const ulRef = useRef(null);
-  const scrollHeight = useRef(0);
+const List = (): ReactElement => {
+  const ulRef = useRef<HTMLUListElement | null>(null);
+  const scrollHeight = useRef<number>(0);
 
-  useEffect(() => {}, []);
+  useEffect((): void => {
+    if (ulRef.current) {
+      ulRef.current.scrollTop = scrollHeight.current;
+    }
+  }, [channelInteractions, incomingInteractions]);
+
+  useEffect((): void => {
+    if (nums <= 0) {
+      return;
+    }
+
+    function handler(): void {
+      scrollHeight.current = ulRef.current?.scrollTop;
+    }
+
+    const onScroll = throttle(handler, 200, {
+      leading: false,
+    });
+
+    const interactionListElement = ulRef.current;
+    interactionListElement?.addEventListener("scroll", onScroll);
+
+    return (): void => {
+      interactionListElement?.removeEventListener("scroll", onScroll);
+    };
+  }, [nums]);
+
+  const onNumChange = (): void => {
+    setNums(num2);
+  };
+
+  const onReset = (): void => {
+    setNums(num1);
+  };
 
   return (
-    <ul>
-      {nums.map((num) => (
-        <li key={num}>{num}</li>
-      ))}
-    </ul>
+    <>
+      <ul>
+        {nums.map((num) => (
+          <li key={num}>{num}</li>
+        ))}
+      </ul>
+      <button onClick={onNumChange}>变更数据位置</button>
+      <button onClick={onReset}>reset</button>
+    </>
   );
 };
 ```
