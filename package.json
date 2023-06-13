@@ -2,7 +2,9 @@
   "devDependencies": {
     "@vuepress/theme-blog": "^2.3.3",
     "prettier": "^2.8.3",
-    "vuepress": "^1.9.8"
+    "vuepress": "^1.9.8",
+    "husky": "^8.0.3",
+    "pretty-quick": "^3.1.3"
   },
   "name": "blog",
   "version": "0.0.1",
@@ -12,7 +14,8 @@
     "dev": "vuepress dev blog",
     "build": "vuepress build blog",
     "prettier": "prettier --write blog",
-    "build:readme":"node ./scripts/index.mjs"
+    "build:readme": "node ./scripts/index.mjs",
+    "prepare": "husky install"
   },
   "dependencies": {
     "dayjs": "^1.11.7"
