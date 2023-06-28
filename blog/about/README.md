@@ -2,6 +2,7 @@ Hello, 我是 qinghuanI，Web 前端工程师
 
 - 🔭 I’m currently working on [Talkdesk](https://www.talkdesk.com/)
 - 🌱 I’m currently learning Docker
+- 📖 I'm the author of [《WebStorm 使用指南》](https://qinghuani.fun/webstorm-guide/)
 - ✍️ I'm writing blog at [https://qinghuani.fun/](https://qinghuani.fun/)
 - 📫 How to reach me: 1062217965@qq.com
 
