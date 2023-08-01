@@ -11,7 +11,7 @@ gen
 node_modules
 
 # vuepress
-.vuepress/dist
+blog/.vuepress/dist
 
 # vscode
 .vscode/*

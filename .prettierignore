@@ -11,3 +11,5 @@ node_modules
 .nvmrc
 CNAME
 yarn.lock
+
+blog/.vuepress/dist
