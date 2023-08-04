@@ -20,8 +20,7 @@ Gitea 服务器在检查代码签名时利用用户提供的 GPG 公钥验证代
 使用 `gpg -k` 或 `--list-public-keys` 查看公钥，参数后面没有指定公钥，则输出所有公钥
 
 ```shell
-gpg -k
-# or gpg --list-public-keys
+gpg -k #or gpg --list-public-keys
 ```
 
 ## 列出私钥
@@ -29,13 +28,22 @@ gpg -k
 使用 `gpg -K` 或 `--list-secret-keys` 查看私钥，参数后面没有指定私钥，则输出所有私钥
 
 ```shell
-gpg -K
-# or gpg --list-secret-keys
+gpg -K # or gpg --list-secret-keys
 ```
 
 其结果如下：
 
 ## 导出私钥/公钥
+
+使用私钥导出公钥
+
+在终端中使用列出私钥
+
+```shell
+gpg -K
+```
+
+成功执行后，结果如下
 
 ## 删除私钥/公钥
 
@@ -53,4 +61,20 @@ export GPG_TTY=$(tty)
 
 ## 在 WebStorm 中配置 GPG
 
+在 WebStorm 中，使用 `command + ,` 快捷键，按照`版本控制-> Git`打开详细面板
+
+![GPG Settings](./images/202308/gpg_settings.png)
+
+点击 `配置 GPG 密钥...` 按钮，打开配置 GPG 密钥
+
+![GPG Keys](./images/202308/gpg_keys.png)
+
+通过下拉框，选择可用的 GPG 密钥
+
 ## FAQ
+
+常用的测试操作
+
+```shell
+echo "test" | gpg --clearsign
+```
